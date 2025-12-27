@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SITE_CONFIG } from "@/lib/constants";
 
 const stats = [
   { value: "10,000+", label: "Happy Customers" },
@@ -65,7 +66,7 @@ const testimonials = [
   {
     name: "Rajesh Kumar",
     location: "Delhi",
-    text: "Best investment for my business. Running cost is almost nothing compared to my old auto. Highly recommend E-Auto!",
+    text: "Best investment for my business. Running cost is almost nothing compared to my old auto. Highly recommend Sethji Industries!",
     rating: 5,
   },
   {
@@ -232,7 +233,7 @@ export default function Home() {
               Built Different. Built Better.
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
-              Every E-Auto vehicle is engineered for performance, reliability, and your peace of mind.
+              Every {SITE_CONFIG.name} vehicle is engineered for performance, reliability, and your peace of mind.
             </p>
           </div>
 

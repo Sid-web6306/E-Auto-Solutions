@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SITE_CONFIG } from "@/lib/constants";
 
 const footerLinks = {
   company: [
@@ -31,11 +32,11 @@ export function SiteFooter() {
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center gap-3">
               <div className="flex size-12 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 text-lg font-bold text-white shadow-lg">
-                EA
+                {SITE_CONFIG.shortName}
               </div>
               <div>
-                <div className="text-xl font-bold">E-Auto</div>
-                <div className="text-sm text-emerald-400">Electric Mobility</div>
+                <div className="text-xl font-bold">{SITE_CONFIG.name}</div>
+                <div className="text-sm text-emerald-400">{SITE_CONFIG.tagline}</div>
               </div>
             </Link>
             <p className="mt-6 max-w-sm text-gray-400 leading-relaxed">
@@ -154,7 +155,7 @@ export function SiteFooter() {
       <div className="border-t border-gray-800">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 py-6 sm:flex-row sm:px-6">
           <div className="text-sm text-gray-400">
-            © {new Date().getFullYear()} E-Auto. All rights reserved.
+            © {new Date().getFullYear()} {SITE_CONFIG.name}. All rights reserved.
           </div>
           <div className="flex items-center gap-6 text-sm text-gray-400">
             <Link href="/privacy" className="hover:text-emerald-400 transition-colors">

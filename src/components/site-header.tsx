@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { SITE_CONFIG } from "@/lib/constants";
 import { useState } from "react";
 
 const navItems = [
@@ -22,12 +23,12 @@ export function SiteHeader() {
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-6 px-4 py-3 sm:px-6">
         <Link href="/" className="flex items-center gap-3 group">
           <div className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 text-sm font-bold text-white shadow-lg shadow-emerald-500/30 transition-transform group-hover:scale-105">
-            EA
+            {SITE_CONFIG.shortName}
           </div>
           <div className="leading-tight">
-            <div className="text-base font-bold tracking-tight text-gray-900">E-Auto</div>
+            <div className="text-base font-bold tracking-tight text-gray-900">{SITE_CONFIG.name}</div>
             <div className="text-xs text-emerald-600 font-medium">
-              Electric Mobility
+              {SITE_CONFIG.tagline}
             </div>
           </div>
         </Link>

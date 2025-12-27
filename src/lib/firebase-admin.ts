@@ -7,17 +7,7 @@ type ServiceAccount = {
 };
 
 function getPrivateKey(): string | undefined {
-  const raw = process.env.FIREBASE_PRIVATE_KEY;
-  if (!raw) return undefined;
-
-  const trimmed = raw.trim();
-  const unquoted =
-    (trimmed.startsWith('"') && trimmed.endsWith('"')) ||
-    (trimmed.startsWith("'") && trimmed.endsWith("'"))
-      ? trimmed.slice(1, -1)
-      : trimmed;
-
-  return unquoted.replace(/\\n/g, "\n").replace(/\r\n/g, "\n");
+  return process.env.FIREBASE_PRIVATE_KEY;
 }
 
 function loadServiceAccountFromEnv(): ServiceAccount | null {

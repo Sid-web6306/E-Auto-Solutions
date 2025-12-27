@@ -1,9 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const navItems = [
+  { href: "/", label: "Home" },
   { href: "/products", label: "Products" },
   { href: "/dealers", label: "Dealers" },
   { href: "/downloads", label: "Downloads" },
@@ -12,6 +14,7 @@ const navItems = [
 ];
 
 export function SiteHeader() {
+  const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -30,15 +33,27 @@ export function SiteHeader() {
         </Link>
 
         <nav className="hidden items-center gap-1 md:flex">
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-colors"
-            >
-              {item.label}
-            </Link>
-          ))}
+          {navItems.map((item) => {
+            const isActive = item.href === "/" 
+              ? pathname === "/" 
+              : pathname === item.href || pathname.startsWith(item.href + "/");
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`relative px-4 py-2 text-sm font-medium rounded-xl transition-all duration-200 ${
+                  isActive
+                    ? "text-emerald-700 bg-gradient-to-r from-emerald-50 to-emerald-100/50"
+                    : "text-gray-600 hover:text-emerald-600 hover:bg-gray-50"
+                }`}
+              >
+                {item.label}
+                {isActive && (
+                  <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-full shadow-sm shadow-emerald-500/50" />
+                )}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="flex items-center gap-3">
@@ -72,16 +87,25 @@ export function SiteHeader() {
       {mobileMenuOpen && (
         <div className="border-t border-gray-100 bg-white md:hidden animate-fade-in">
           <nav className="flex flex-col p-4 space-y-1">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="px-4 py-3 text-sm font-medium text-gray-700 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-colors"
-              >
-                {item.label}
-              </Link>
-            ))}
+            {navItems.map((item) => {
+              const isActive = item.href === "/" 
+                ? pathname === "/" 
+                : pathname === item.href || pathname.startsWith(item.href + "/");
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`relative px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 ${
+                    isActive
+                      ? "text-emerald-700 bg-gradient-to-r from-emerald-50 to-emerald-100/50 border-l-3 border-emerald-500"
+                      : "text-gray-700 hover:text-emerald-600 hover:bg-gray-50"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
             <Link
               href="/contact"
               onClick={() => setMobileMenuOpen(false)}

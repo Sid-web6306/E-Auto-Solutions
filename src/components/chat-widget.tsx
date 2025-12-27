@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, FormEvent } from "react";
 import { useUserChat } from "@/lib/chat-context";
+import { SITE_CONFIG } from "@/lib/constants";
 
 export function ChatWidget() {
   const {
@@ -119,7 +120,7 @@ export function ChatWidget() {
                 </svg>
               </div>
               <div>
-                <div className="font-semibold">E-Auto Support</div>
+                <div className="font-semibold">{SITE_CONFIG.supportName}</div>
                 <div className="text-xs text-white/80">
                   {session?.status === "active"
                     ? "Online"

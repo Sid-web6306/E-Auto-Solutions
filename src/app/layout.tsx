@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SITE_CONFIG } from "@/lib/constants";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { FirebaseAnalytics } from "@/components/firebase-analytics";
@@ -16,10 +17,10 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "E-Auto",
-    template: "%s | E-Auto",
+    default: SITE_CONFIG.name,
+    template: `%s | ${SITE_CONFIG.name}`,
   },
-  description: "Electric vehicles and mobility solutions.",
+  description: SITE_CONFIG.description,
 };
 
 export default function RootLayout({

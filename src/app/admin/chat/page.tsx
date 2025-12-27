@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "@/lib/auth-context";
 import { useAdminChat, AdminChatProvider } from "@/lib/chat-context";
 import { ChatSession } from "@/lib/chat-types";
+import { SITE_CONFIG } from "@/lib/constants";
 
 function ChatSessionItem({
   session,
@@ -100,8 +101,8 @@ function AdminChatContent() {
 
   useEffect(() => {
     document.title = totalUnreadCount > 0 
-      ? `(${totalUnreadCount}) Chat - E-Auto Admin` 
-      : "Chat - E-Auto Admin";
+      ? `(${totalUnreadCount}) Chat - ${SITE_CONFIG.name} Admin` 
+      : `Chat - ${SITE_CONFIG.name} Admin`;
   }, [totalUnreadCount]);
 
   async function handleSendMessage(e: FormEvent) {

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/lib/auth-context";
+import { SITE_CONFIG } from "@/lib/constants";
 import { getClientFirestore } from "@/lib/firebase-client";
 import {
   collection,
@@ -77,12 +78,12 @@ export function AdminHeader() {
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-6 px-4 py-3 sm:px-6">
         <Link href="/admin/enquiries" className="flex items-center gap-3 group">
           <div className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 text-sm font-bold text-white shadow-lg shadow-emerald-500/30 transition-transform group-hover:scale-105">
-            EA
+            {SITE_CONFIG.shortName}
           </div>
           <div className="leading-tight">
             <div className="flex items-center gap-2">
               <span className="text-base font-bold tracking-tight text-gray-900 dark:text-white">
-                E-Auto
+                {SITE_CONFIG.name}
               </span>
               {!loading && user && (
                 <span className="rounded-md bg-emerald-100 px-2 py-0.5 text-xs font-semibold text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-300">
@@ -91,7 +92,7 @@ export function AdminHeader() {
               )}
             </div>
             <div className="text-xs text-emerald-600 font-medium">
-              Electric Mobility
+              {SITE_CONFIG.tagline}
             </div>
           </div>
         </Link>

@@ -36,12 +36,14 @@ export function EnquiryForm(props: { sourcePage?: string }) {
       });
 
       if (!res.ok) {
+        // Log the actual error for debugging, but show a generic message to users
         const data = (await res.json().catch(() => null)) as
           | { error?: string }
           | null;
+        console.error("Enquiry submission error:", data?.error);
         setStatus({
           state: "error",
-          message: data?.error || "Failed to submit. Please try again.",
+          message: "Failed to submit. Please try again later.",
         });
         return;
       }
@@ -50,7 +52,8 @@ export function EnquiryForm(props: { sourcePage?: string }) {
       setStatus({ state: "success" });
     } catch (err) {
       const message = err instanceof Error ? err.message : "Network error";
-      setStatus({ state: "error", message });
+      console.error(message);
+      setStatus({ state: "error", message: "Something went wrong. Please try again." });
     }
   }
 

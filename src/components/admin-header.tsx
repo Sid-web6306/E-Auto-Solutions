@@ -21,11 +21,18 @@ export function AdminHeader() {
             EA
           </div>
           <div className="leading-tight">
-            <div className="text-base font-bold tracking-tight text-gray-900 dark:text-white">
-              E-Auto Admin
+            <div className="flex items-center gap-2">
+              <span className="text-base font-bold tracking-tight text-gray-900 dark:text-white">
+                E-Auto
+              </span>
+              {!loading && user && (
+                <span className="rounded-md bg-emerald-100 px-2 py-0.5 text-xs font-semibold text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-300">
+                  Admin
+                </span>
+              )}
             </div>
             <div className="text-xs text-emerald-600 font-medium">
-              Dashboard
+              Electric Mobility
             </div>
           </div>
         </Link>

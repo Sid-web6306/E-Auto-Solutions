@@ -27,20 +27,26 @@ export function GoogleMap({
 }: GoogleMapProps) {
   const mapRef = useRef<HTMLDivElement>(null);
   const [mapLoaded, setMapLoaded] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [loadError, setLoadError] = useState(false);
   const mapInstanceRef = useRef<google.maps.Map | null>(null);
   const markersRef = useRef<google.maps.Marker[]>([]);
 
   const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+  
+  // Derive error message from state
+  const error = !apiKey 
+    ? "Google Maps API key is not configured" 
+    : loadError 
+    ? "Failed to load Google Maps" 
+    : null;
 
   useEffect(() => {
-    if (!apiKey) {
-      setError("Google Maps API key is not configured");
-      return;
-    }
+    if (!apiKey || mapLoaded) return;
 
+    // Check if Google Maps is already loaded
     if (typeof window !== "undefined" && window.google?.maps) {
-      setMapLoaded(true);
+      // Use setTimeout to avoid synchronous setState in effect
+      setTimeout(() => setMapLoaded(true), 0);
       return;
     }
 
@@ -57,14 +63,14 @@ export function GoogleMap({
     script.async = true;
     script.defer = true;
     script.onload = () => setMapLoaded(true);
-    script.onerror = () => setError("Failed to load Google Maps");
+    script.onerror = () => setLoadError(true);
     document.head.appendChild(script);
 
     return () => {
       markersRef.current.forEach((marker) => marker.setMap(null));
       markersRef.current = [];
     };
-  }, [apiKey]);
+  }, [apiKey, mapLoaded]);
 
   useEffect(() => {
     if (!mapLoaded || !mapRef.current || !window.google?.maps) return;
@@ -127,7 +133,7 @@ export function GoogleMap({
     });
 
     if (markers.length > 1) {
-      mapInstanceRef.current.fitBounds(bounds, { padding: 50 });
+      mapInstanceRef.current.fitBounds(bounds, 50);
     } else if (markers.length === 1) {
       mapInstanceRef.current.setCenter({ lat: markers[0].lat, lng: markers[0].lng });
       mapInstanceRef.current.setZoom(zoom);

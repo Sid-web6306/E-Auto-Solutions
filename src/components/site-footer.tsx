@@ -43,6 +43,17 @@ export function SiteFooter() {
               Leading manufacturer of electric vehicles in India. Committed to sustainable 
               transportation and empowering businesses with reliable, cost-effective mobility solutions.
             </p>
+            <div className="mt-4 flex items-start gap-2 text-sm text-gray-400">
+              <svg className="h-5 w-5 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              <div>
+                <div>{SITE_CONFIG.address.street}</div>
+                <div>{SITE_CONFIG.address.city}, {SITE_CONFIG.address.state}, {SITE_CONFIG.address.country}</div>
+                <div>{SITE_CONFIG.address.pincode}</div>
+              </div>
+            </div>
             {/* Social links */}
             <div className="mt-6 flex gap-4">
               {["facebook", "twitter", "instagram", "youtube"].map((social) => (
@@ -128,7 +139,7 @@ export function SiteFooter() {
             </div>
             <div>
               <div className="text-sm text-gray-400">Call us anytime</div>
-              <div className="text-lg font-semibold">+91 XXXXXXXXXX</div>
+              <a href={`tel:${SITE_CONFIG.phone}`} className="text-lg font-semibold hover:text-emerald-400 transition-colors">{SITE_CONFIG.phone}</a>
             </div>
           </div>
           <div className="flex items-center gap-4">
@@ -139,7 +150,7 @@ export function SiteFooter() {
             </div>
             <div>
               <div className="text-sm text-gray-400">Email us at</div>
-              <div className="text-lg font-semibold">sales@eauto.com</div>
+              <div className="text-lg font-semibold">sales@sethjiindustries.com</div>
             </div>
           </div>
           <Link

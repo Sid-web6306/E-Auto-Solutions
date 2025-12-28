@@ -29,7 +29,7 @@ export default function ProductsPage() {
         <div>
           <h1 className="text-3xl font-semibold tracking-tight">Products</h1>
           <p className="mt-2 text-sm text-black/70 dark:text-white/70">
-            Browse our product categories. Model pages will be added next.
+            Explore our range of electric vehicles designed for efficiency and reliability.
           </p>
         </div>
         <Link

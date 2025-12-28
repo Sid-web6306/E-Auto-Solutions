@@ -9,8 +9,7 @@ export default function DownloadsPage() {
     <div className="mx-auto w-full max-w-7xl px-4 py-14 sm:px-6">
       <h1 className="text-3xl font-semibold tracking-tight">Downloads</h1>
       <p className="mt-4 max-w-3xl text-sm leading-7 text-black/70 dark:text-white/70">
-        Brochures, spec sheets and warranty documents will be added here. We can
-        host files on Firebase Storage.
+        Download product brochures, specifications, and warranty documents for our electric vehicles.
       </p>
 
       <div className="mt-8 grid gap-4 sm:grid-cols-2 md:grid-cols-3">
